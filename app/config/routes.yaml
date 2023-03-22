@@ -8,6 +8,6 @@ app.swagger_ui:
     methods: GET
     defaults: { _controller: nelmio_api_doc.controller.swagger_ui }
 app.cv_generator:
-    path: /api/v1/generate/{type}
+    path: /api/v1/generate/{provider}
     controller: App\Controller\GeneratorController::generate
     methods: POST
