@@ -16,6 +16,7 @@ class GeneratorController extends AbstractController
     {
         $this->factory = new GeneratorFactory();
     }
+
     /**
     * @OA\Tag(name="generator")
     */
