@@ -6,5 +6,12 @@ abstract class Validator
 {
     protected $valided = true;
 
-    abstract public function Validate(): bool;
+    protected $required = [];
+
+    abstract public function Validate(array $params): bool;
+
+    protected function setValided(bool $valided): void
+    {
+        $this->valided = $valided;
+    }
 }
