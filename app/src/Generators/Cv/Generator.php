@@ -6,6 +6,10 @@ use App\Generators\Generator as MainGenerator;
 use App\Object\Cv\GeneratorObject;
 use App\Validator\Cv\Validator;
 use Exception;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Dompdf\Dompdf;
+
 
 class Generator extends MainGenerator
 {    
@@ -33,7 +37,24 @@ class Generator extends MainGenerator
             throw new Exception("Invalid parameters", 1);
         }
         $this->setDataToObject($params);
-        $this->data = $params;
+        $pdf = $this->createPdf();
+        $this->data = $pdf;
+    }
+
+    public function createPdf()
+    {
+        var_dump($this->renderView('base.html.twig'));die;
+        $html =  $this->renderView('generator/Cv/cv.html.twig', [$this->object]);
+        die;$dompdf = new Dompdf();
+  
+        $dompdf->loadHtml($html);
+        $dompdf->render();
+        
+        return new Response (
+            $dompdf->stream('resume', ["Attachment" => false]),
+            Response::HTTP_OK,
+            ['Content-Type' => 'application/pdf']
+        );
     }
     
     /**

@@ -2,10 +2,11 @@
 
 namespace App\Generators;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Object\GeneratorObject;
 use App\Validator\Validator;
 
-abstract class Generator
+abstract class Generator extends AbstractController
 {
     /**
      * object
