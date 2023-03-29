@@ -2,17 +2,22 @@
 
 namespace App\Generators\Cv;
 
+use App\Service\PdfService;
 use App\Generators\Generator as MainGenerator;
 use App\Object\Cv\GeneratorObject;
 use App\Validator\Cv\Validator;
 use Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Dompdf\Dompdf;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
 
 
 class Generator extends MainGenerator
-{    
+{
+    private $service;
+
     /**
      * __construct
      *
@@ -23,7 +28,7 @@ class Generator extends MainGenerator
         $this->object = new GeneratorObject;
         $this->validator = new Validator;
     }
-    
+
     /**
      * generate
      *
@@ -37,24 +42,8 @@ class Generator extends MainGenerator
             throw new Exception("Invalid parameters", 1);
         }
         $this->setDataToObject($params);
-        $pdf = $this->createPdf();
+        $pdf = $this->createPdf($this->object);
         $this->data = $pdf;
-    }
-
-    public function createPdf()
-    {
-        var_dump($this->renderView('base.html.twig'));die;
-        $html =  $this->renderView('generator/Cv/cv.html.twig', [$this->object]);
-        die;$dompdf = new Dompdf();
-  
-        $dompdf->loadHtml($html);
-        $dompdf->render();
-        
-        return new Response (
-            $dompdf->stream('resume', ["Attachment" => false]),
-            Response::HTTP_OK,
-            ['Content-Type' => 'application/pdf']
-        );
     }
     
     /**
@@ -72,5 +61,12 @@ class Generator extends MainGenerator
             }
             $this->object->$method($value);    
         }
+    }
+
+    private function createPdf(object $params): string
+    {
+        // $test = $this->container->getParameter('kernel.bundles');
+        // $test->render('pdf/index.html.twig',[$params]);
+        var_dump($this->container->get('kernel.bundles'));die;
     }
 }

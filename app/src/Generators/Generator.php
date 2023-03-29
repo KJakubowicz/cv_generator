@@ -2,11 +2,11 @@
 
 namespace App\Generators;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Object\GeneratorObject;
 use App\Validator\Validator;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
-abstract class Generator extends AbstractController
+abstract class Generator
 {
     /**
      * object
@@ -20,7 +20,14 @@ abstract class Generator extends AbstractController
      *
      * @var Validator
      */
-    protected Validator $validator;   
+    protected Validator $validator;
+    
+    /**
+     * container
+     *
+     * @var ContainerInterface
+     */
+    protected ContainerInterface $container;  
  
     /**
      * data
@@ -28,7 +35,7 @@ abstract class Generator extends AbstractController
      * @var array
      */
     protected $data = [];
-    
+
     /**
      * generate
      *
@@ -36,7 +43,18 @@ abstract class Generator extends AbstractController
      * @return void
      */
     abstract public function generate(array $params): void;
-    
+        
+    /**
+     * setContainer
+     *
+     * @param  mixed $container
+     * @return void
+     */
+    public function setContainer(ContainerInterface $container): void
+    {
+        $this->container = $container;
+    }
+
     /**
      * setData
      *
