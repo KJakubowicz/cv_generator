@@ -26,6 +26,7 @@ class GeneratorController extends AbstractController
     {
         $generator = $factory->createGenerator($provider);
         $factory->setTwig($generator);
+        $factory->setProjectDir($generator);
         $content = json_decode($request->getContent(), true);
         $generator->generate($content['params']);
         

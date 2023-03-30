@@ -23,11 +23,18 @@ abstract class Generator
     protected Validator $validator;
     
     /**
-     * container
+     * twig
      *
      * @var Environment
      */
-    protected Environment $twig;  
+    protected Environment $twig;
+    
+    /**
+     * projectDir
+     *
+     * @var string
+     */
+    protected $projectDir;  
  
     /**
      * data
@@ -44,6 +51,17 @@ abstract class Generator
      */
     abstract public function generate(array $params): void;
         
+    /**
+     * setProjectDir
+     *
+     * @param  string $projectDir
+     * @return void
+     */
+    public function setProjectDir(string $projectDir): void
+    {
+        $this->projectDir = $projectDir;
+    }
+
     /**
      * setTwig
      *
