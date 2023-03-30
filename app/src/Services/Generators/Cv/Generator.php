@@ -9,7 +9,6 @@ use Exception;
 
 class Generator extends MainGenerator
 {
-    private $service;
 
     /**
      * __construct
@@ -55,10 +54,17 @@ class Generator extends MainGenerator
             $this->object->$method($value);    
         }
     }
-
+    
+    /**
+     * createPdf
+     *
+     * @param  object $params
+     * @return string
+     */
     private function createPdf(object $params): string
     {
-        $htmlContents = $this->twig->render('pdf/cv.html.twig',[$params]);
-        var_dump($htmlContents);die;
+        $pdfHtml = $this->twig->render('pdf/cv.html.twig',[$params]);
+
+        return '';
     }
 }
