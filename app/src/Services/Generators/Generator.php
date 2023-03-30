@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Generators;
+namespace App\Services\Generators;
 
 use App\Object\GeneratorObject;
 use App\Validator\Validator;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Twig\Environment;
 
 abstract class Generator
 {
@@ -25,9 +25,9 @@ abstract class Generator
     /**
      * container
      *
-     * @var ContainerInterface
+     * @var Environment
      */
-    protected ContainerInterface $container;  
+    protected Environment $twig;  
  
     /**
      * data
@@ -45,14 +45,14 @@ abstract class Generator
     abstract public function generate(array $params): void;
         
     /**
-     * setContainer
+     * setTwig
      *
-     * @param  mixed $container
+     * @param  mixed $twig
      * @return void
      */
-    public function setContainer(ContainerInterface $container): void
+    public function setTwig(Environment $twig): void
     {
-        $this->container = $container;
+        $this->twig = $twig;
     }
 
     /**

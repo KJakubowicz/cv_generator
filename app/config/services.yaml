@@ -27,7 +27,3 @@ services:
     #     alias: App\Generators\Cv\Generator
 
     App\Generators\GeneratorFactory:
-        arguments:
-            $container: "@service_container"
-
-    Symfony\Component\DependencyInjection\ContainerInterface: "@service_container"

@@ -1,18 +1,11 @@
 <?php
 
-namespace App\Generators\Cv;
+namespace App\Services\Generators\Cv;
 
-use App\Service\PdfService;
-use App\Generators\Generator as MainGenerator;
+use App\Services\Generators\Generator as MainGenerator;
 use App\Object\Cv\GeneratorObject;
 use App\Validator\Cv\Validator;
 use Exception;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-
-
 
 class Generator extends MainGenerator
 {
@@ -65,8 +58,7 @@ class Generator extends MainGenerator
 
     private function createPdf(object $params): string
     {
-        // $test = $this->container->getParameter('kernel.bundles');
-        // $test->render('pdf/index.html.twig',[$params]);
-        var_dump($this->container->get('kernel.bundles'));die;
+        $htmlContents = $this->twig->render('pdf/cv.html.twig',[$params]);
+        var_dump($htmlContents);die;
     }
 }
