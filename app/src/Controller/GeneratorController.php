@@ -5,28 +5,12 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use OpenApi\Annotations as OA;
-use App\Generators\GeneratorFactory;
+use App\Services\Generators\GeneratorFactory;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class GeneratorController extends AbstractController
 {
-    /**
-     * factory
-     *
-     * @var GeneratorFactory
-     */
-    private GeneratorFactory $factory;
-    
-    /**
-     * __construct
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->factory = new GeneratorFactory();
-    }
 
     /**
     * @OA\Tag(name="generator")
@@ -38,9 +22,10 @@ class GeneratorController extends AbstractController
     *     )
     * )
     */
-    public function generate($provider, Request $request): Response
+    public function generate($provider, Request $request, GeneratorFactory $factory): Response
     {
-        $generator = $this->factory->createGenerator($provider);
+        $generator = $factory->createGenerator($provider);
+        $factory->setTwig($generator);
         $content = json_decode($request->getContent(), true);
         $generator->generate($content['params']);
         

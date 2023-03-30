@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Generators;
+namespace App\Services\Generators;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Object\GeneratorObject;
 use App\Validator\Validator;
+use Twig\Environment;
 
-abstract class Generator extends AbstractController
+abstract class Generator
 {
     /**
      * object
@@ -20,7 +20,14 @@ abstract class Generator extends AbstractController
      *
      * @var Validator
      */
-    protected Validator $validator;   
+    protected Validator $validator;
+    
+    /**
+     * container
+     *
+     * @var Environment
+     */
+    protected Environment $twig;  
  
     /**
      * data
@@ -28,7 +35,7 @@ abstract class Generator extends AbstractController
      * @var array
      */
     protected $data = [];
-    
+
     /**
      * generate
      *
@@ -36,7 +43,18 @@ abstract class Generator extends AbstractController
      * @return void
      */
     abstract public function generate(array $params): void;
-    
+        
+    /**
+     * setTwig
+     *
+     * @param  mixed $twig
+     * @return void
+     */
+    public function setTwig(Environment $twig): void
+    {
+        $this->twig = $twig;
+    }
+
     /**
      * setData
      *
