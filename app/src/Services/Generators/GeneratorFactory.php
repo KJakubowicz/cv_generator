@@ -12,16 +12,25 @@ class GeneratorFactory
      * @var Environment
      */
     private $twig;
+
+    /**
+     * projectDir
+     *
+     * @var string
+     */
+    private $projectDir;
     
     /**
      * __construct
      *
-     * @param  mixed $twig
+     * @param  Environment $twig
+     * @param  string $projectDir
      * @return void
      */
-    public function __construct(Environment $twig)
+    public function __construct(Environment $twig, string $projectDir)
     {
         $this->twig = $twig;
+        $this->projectDir = $projectDir;
     }
     
     /**
@@ -51,4 +60,16 @@ class GeneratorFactory
     {
         $generator->setTwig($this->twig);
     }
+
+    /**
+     * setProjectDir
+     *
+     * @param  Generator $generator
+     * @return void
+     */
+    public function setProjectDir(Generator $generator)
+    {
+        $generator->setProjectDir($this->projectDir);
+    }
+
 }
