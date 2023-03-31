@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Validator\Cv;
+namespace App\Services\Validators;
 
-use App\Validator\Validator as MainValidator;
+use App\Services\Validators\MainValidator;
 
-class Validator extends MainValidator
+class CvValidator extends MainValidator
 {    
     /**
      * requred
