@@ -28,4 +28,16 @@ services:
     #     public: true
     #     alias: App\Generators\Cv\Generator
 
-    App\Generators\GeneratorFactory:
+    App\Services\Generators\GeneratorFactory:
+        arguments:
+            $cvGenerator: '@App\Services\Generators\Cv\Generator'
+
+    App\Services\Validators\CvValidator:
+
+    App\Services\Creators\PdfCreator:
+
+    App\Services\Generators\Cv\Generator:
+        arguments:
+            $validator: '@App\Services\Validators\CvValidator'
+            $setter: '@App\Services\Setters\Objects\CvObjectSetter'
+            $pdfCreator: '@App\Services\Creators\PdfCreator'

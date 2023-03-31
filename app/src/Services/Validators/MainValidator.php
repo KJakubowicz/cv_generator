@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Validator;
+namespace App\Services\Validators;
 
-abstract class Validator
+abstract class MainValidator
 {    
     /**
      * valided
