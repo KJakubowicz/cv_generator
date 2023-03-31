@@ -3,87 +3,61 @@
 namespace App\Services\Generators\Cv;
 
 use App\Services\Generators\Generator as MainGenerator;
-use App\Object\Cv\GeneratorObject;
-use App\Validator\Cv\Validator;
+use App\Services\Setters\Objects\CvObjectSetter;
 use Exception;
-use Dompdf\Dompdf;
-use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Filesystem\Path;
+use App\Services\Validators\CvValidator;
+use App\Services\Creators\PdfCreator;
 
 class Generator extends MainGenerator
-{
-
+{    
+    /**
+     * _setter
+     *
+     * @var CvObjectSetter
+     */
+    private $_setter;
+    
+    /**
+     * _pdfCreator
+     *
+     * @var PdfCreator
+     */
+    private $_pdfCreator;
+    
     /**
      * __construct
      *
+     * @param  CvValidator $validator
+     * @param  CvObjectSetter $setter
+     * @param  PdfCreator $pdfCreator
      * @return void
      */
-    public function __construct()
+    public function __construct(CvValidator $validator, CvObjectSetter $setter, PdfCreator $pdfCreator)
     {
-        $this->object = new GeneratorObject;
-        $this->validator = new Validator;
+        $this->validator = $validator;
+        $this->_setter = $setter;
+        $this->_pdfCreator = $pdfCreator;
     }
 
     /**
      * generate
      *
      * @param  array $params
-     * @return void
+     * @return array
      */
-    public function generate(array $params): void
+    public function generate(array $params): array
     {
         $valided = $this->validator->Validate($params);
+
         if (!$valided) {
             throw new Exception("Invalid parameters", 1);
         }
-        $this->setDataToObject($params);
-        $pdf = $this->createPdf($this->object);
 
-        $this->data = [
-            'cd_path' => $pdf
+        $cvObject = $this->_setter->setData($params);
+        $pdf = $this->_pdfCreator->createPdf($cvObject, 'cv');
+
+        return [
+            'filePath' => $pdf
         ];
-  
-    }
-    
-    /**
-     * setDataToObject
-     *
-     * @param  mixed $params
-     * @return void
-     */
-    private function setDataToObject(array $params): void
-    {
-        foreach ($params as $key => $value) {
-            $method = 'set'.ucfirst(strtolower($key));
-            if (!method_exists($this->object, $method)) {
-                continue;
-            }
-            $this->object->$method($value);    
-        }
-    }
-    
-    /**
-     * createPdf
-     *
-     * @param  object $params
-     * @return string
-     */
-    private function createPdf(object $params): string
-    {
-        $pdfHtml = $this->twig->render('pdf/cv.html.twig',[$params]);
-        $dompdf = new Dompdf();
-        $dompdf->loadHtml($pdfHtml);
-        $dompdf->render();
-        $output = $dompdf->output();
-
-        $filesystem = new Filesystem();
-        try {
-            $filesystem->dumpFile(Path::normalize($this->projectDir.'/files/pdf/cv.pdf'), $output);
-        } catch (IOExceptionInterface $exception) {
-            echo "An error occurred while creating your directory at ".$exception->getPath();
-        }
-
-        return Path::normalize($this->projectDir.'/files/pdf/cv.pdf');
     }
 }
