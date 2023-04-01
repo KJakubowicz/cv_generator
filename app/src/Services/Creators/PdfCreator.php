@@ -33,13 +33,21 @@ class PdfCreator
     /**
      * createPdf
      *
-     * @param  object $params
+     * @param  array $params
      * @return string
      */
-    public function createPdf(object $params, string $fileName): string
+    public function createPdf(array $params, string $fileName): string
     {
-        $pdfHtml = $this->_twig->render('pdf/' . $fileName . '.html.twig',[$params]);
+        $pdfHtml = $this->_twig->render(
+            'pdf/' . $fileName . '.html.twig',
+            [
+                'data' => $params
+            ]
+        );
         $domPdf = new Dompdf();
+        $options = $domPdf->getOptions(); 
+        $options->set(array('isRemoteEnabled' => true));
+        $domPdf->setOptions($options);
         $domPdf->loadHtml($pdfHtml);
         $domPdf->render();
         $output = $domPdf->output();

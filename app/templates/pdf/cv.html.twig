@@ -1,112 +1,89 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>CV - Imię Nazwisko</title>
+	<meta charset="UTF-8">
+	<title>CV - {{data.name ~ ' ' ~ data.surname}}</title>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 	<style>
-		body {
-			font-family: Arial, sans-serif;
-			font-size: 14px;
-			line-height: 1.6;
-			color: #333;
-		}
-
-		h1, h2 {
-			font-weight: bold;
-			margin-bottom: 10px;
-		}
-
-		h1 {
-			font-size: 28px;
-			color: #007bff;
-		}
-
-		h2 {
-			font-size: 24px;
-			color: #444;
-		}
-
-		p {
-			margin-bottom: 10px;
-		}
-
-		ul {
+		html,body{
+			font-family: sans-serif;
 			margin: 0;
-			padding: 0;
-			list-style: none;
+			width: 210mm;
+			height: 297mm;
 		}
-
-		ul li {
-			margin-bottom: 5px;
+		.cv-content {
+			display: table;
+			width: 100%;
 		}
-
-		section {
+		.left-content {
+			width: 35%;
+			display: table-cell;
+			color: white;
+			background-color: #253847;
+		}
+		.right-content {
+			display: table-cell;
+		}
+		.header {
+			display: table-row;
+			width: 100%;
+			height: 250px;
+		}
+		.block {
+			display: table-row;
+		}
+		.block-header {
+			border-bottom: 1px solid;
+			font-size: 32px;
 			margin-bottom: 20px;
 		}
-
-		.section-title {
-			background-color: #007bff;
-			color: #fff;
-			font-weight: bold;
-			padding: 5px 10px;
-			margin-bottom: 10px;
-			display: inline-block;
+		.left-content .block-inner {
+			width: 200px;
 		}
-
-		.skill-list {
-			margin-top: 5px;
-			margin-left: 20px;
-			font-weight: normal;
-			color: #666;
+		.left-content .header img {
+			border-radius: 50%;
+			object-fit: cover;
+			content: url("{{data.photo}}");
 		}
-
-		.clearfix {
-			clear: both;
-		}
-
-		@media print {
-			body {
-				font-size: 12px;
-			}
+		.right-content .block-inner {
+			width: 200px;
+			align: right;
 		}
 	</style>
 </head>
 <body>
-	<header>
-		<h1>Imię Nazwisko</h1>
-		<p>Adres: ul. Przykładowa 123, 00-000 Miasto</p>
-		<p>Telefon: 123-456-789</p>
-		<p>Email: example@example.com</p>
-		<p>LinkedIn: <a href="#">linkedin.com/in/example</a></p>
-	</header>
-
-	<section>
-		<h2 class="section-title">Doświadczenie zawodowe</h2>
-
-		<div class="experience">
-			<h3>Nazwa stanowiska, Firma</h3>
-			<p class="date">MM/RR - Obecnie</p>
-			<ul>
-				<li>Opis zadania 1</li>
-				<li>Opis zadania 2</li>
-				<li>Opis zadania 3</li>
-			</ul>
-		</div>
-
-		<div class="experience">
-			<h3>Nazwa stanowiska, Firma</h3>
-			<p class="date">MM/RR - MM/RR</p>
-			<ul>
-				<li>Opis zadania 1</li>
-				<li>Opis zadania 2</li>
-				<li>Opis zadania 3</li>
-			</ul>
-		</div>
-	</section>
-
-	<section>
-		<h2 class="section-title">Wykształcenie</h2>
-
-		<div class="education">
-			<h3>Tytuł naukowy, Kierunek studiów</h3>
-			<p>Uniwersytet, Wydział, Miejscowość</p>
-			<p class="date">RR -
+	<div class="cv-content">
+		<div class="left-content" align="left">
+			<div class="header">
+				<div class="header-inner">
+					<img src="{{data.photo}}" alt="profile.png" width="200" height="200">
+				</div>
+			</div>
+			<div class="block">
+				<div class="block-inner">
+					<div class="block-header">
+						<span>
+							Kontant
+						</span>
+					</div>
+					<div class="phone">
+						<i class="fas fa-phone"></i>
+						<span>
+							{{data.phone}}
+						</span>
+					</div>
+					<div class="email">
+						<span>
+							{{data.email}}
+						</span>
+					</div>
+				</div>
+			</div>
+		</div> 
+		<div class="right-content" align="right">
+			<div class="header">
+			asddsaasd
+			</div>
+		</div> 
+	</div>
+</body>
