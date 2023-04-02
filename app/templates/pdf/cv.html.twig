@@ -8,43 +8,68 @@
 		html,body{
 			font-family: sans-serif;
 			margin: 0;
-			width: 800px;
-			height: 1403px;
+			width: 1000px;
+			height: 1415px;
 			padding: 0px;
+		}
+		p {
+			margin: 0;
+		}
+		.strong {
+			font-weight: bold;
+		}
+		.p-standard {
+			padding: 5px 0;
 		}
 		.cv-content {
 			display: table;
-			width: 100%;
 			height: 100%;
 		}
-		.left-content {
-			width: 35%;
-			display: table-cell;
-			color: white;
-			background-color: #253847;
-			height: 100%;
-		}
+		.left-content,
 		.right-content {
 			display: table-cell;
 		}
+		.left-content {
+    		background: #303d48;
+			color: white;
+			width: 350px;
+			max-width: 350px;
+		}
+		.right-content {
+			width: 700px;
+		}
+		.header {
+			width: 300px;
+			padding-top: 40px;
+			height: 200px;
+		}
 		.header-inner {
-			height: 250px;
-    		position: relative;
+			position: relative;
 		}
 		.header-inner img {
 			position: absolute;
-			
-			right: 0;
 			margin: auto;
-			bottom: 0;
-			top: 0;
+			left: 0;
+			right: 0;
+			border-radius: 50%;
 		}
-
+		.block {
+			padding: 0 50px;
+			padding-top: 50px;
+		}
+		.block-header {
+			margin-bottom: 35px;
+			font-size: 32px;
+			border-bottom: 1px solid;
+		}
+		.block i {
+			padding-right: 10px;
+		}
 	</style>
 </head>
 <body>
 	<div class="cv-content">
-		<div class="left-content" align="left">
+		<div class="left-content">
 			<div class="header">
 				<div class="header-inner">
 					<img src="{{data.photo}}" alt="profile.png" width="200" height="200">
@@ -57,21 +82,85 @@
 							Kontant
 						</span>
 					</div>
-					<div class="phone">
+					<div class="p-standard">
 						<i class="fas fa-phone"></i>
 						<span>
 							{{data.phone}}
 						</span>
 					</div>
-					<div class="email">
+					<div class="p-standard">
+						<i class="fas fa-envelope"></i>
 						<span>
 							{{data.email}}
 						</span>
 					</div>
+					<div class="p-standard">
+						<i class="fas fa-calendar"></i>
+						<span>
+							{{data.birthdate}}
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="block">
+				<div class="block-inner">
+					<div class="block-header">
+						<span>
+							Edukacja
+						</span>
+					</div>
+					{% for education in data.education %}
+						<div class="p-standard">
+							<p class="strong p-standard">
+								{{education.name}}
+							</p>
+							<p class="p-standard">
+								{{education.start ~ ' - ' ~ education.end}}
+							</p>
+							<p class="p-standard">
+								{{education.school}}
+							</p>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="block">
+				<div class="block-inner">
+					<div class="block-header">
+						<span>
+							Języki
+						</span>
+					</div>
+					{% for languageSkill in data.languageSkills %}
+						<div class="p-standard">
+							<p class="strong p-standard">
+								{{languageSkill.name}}
+							</p>
+							<div class="p-standard">
+								<span>
+									{{languageSkill.lvl}}
+								</span>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="block">
+				<div class="block-inner">
+					<div class="block-header">
+						<span>
+							Zainsteresowania
+						</span>
+					</div>
+					{% for interest in data.interests %}
+						<li class="p-standard">
+							{{interest.name}}
+						</li>
+					{% endfor %}
 				</div>
 			</div>
 		</div> 
-		<div class="right-content" align="right">
+		<div class="right-content">
 			<div class="header">
 			asddsaasd
 			</div>

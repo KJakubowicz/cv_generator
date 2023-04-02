@@ -98,11 +98,11 @@ class GeneratorController extends AbstractController
                 "links": [
                     {
                         "name": "git",
-                        "start": "https://github.com/nelmio/NelmioApiDocBundle/issues/1759"
+                        "href": "https://github.com/nelmio/NelmioApiDocBundle/issues/1759"
                     },
                     {
                         "name": "yb",
-                        "start": "https://www.youtube.com/@bartkubicki2554/videos"
+                        "href": "https://www.youtube.com/@bartkubicki2554/videos"
                     }
                 ]
         }', true
