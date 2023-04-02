@@ -361,13 +361,36 @@ class GeneratorObject extends MainObjectGenerator
     }
     
     /**
-     * getPhotoLinks
+     * getLinks
      *
      * @return array
      */
-    public function getPhotoLinks(): array
+    public function getLinks(): array
     {
         return $this->links;
     }
-
+    
+    /**
+     * getData
+     *
+     * @return array
+     */
+    public function getData(): array
+    {
+        return [
+            'photo' => $this->getPhoto(),
+            'name' => $this->getName(),
+            'surname' => $this->getSurname(),
+            'email' => $this->getEmail(),
+            'phone' => $this->getPhone(),
+            'birthdate' => $this->getBirthdate(),
+            'description' => $this->getDescription(),
+            'experience' => $this->getExperience(),
+            'education' => $this->getEducation(),
+            'languageSkills' => $this->getLanguageSkills(),
+            'skills' => $this->getSkills(),
+            'interests' => $this->getInterests(),
+            'links' => $this->getLinks(),
+        ];
+    }
 }

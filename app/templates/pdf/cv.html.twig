@@ -1,112 +1,169 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>CV - Imię Nazwisko</title>
+	<meta charset="UTF-8">
+	<title>CV - {{data.name ~ ' ' ~ data.surname}}</title>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 	<style>
-		body {
-			font-family: Arial, sans-serif;
-			font-size: 14px;
-			line-height: 1.6;
-			color: #333;
-		}
-
-		h1, h2 {
-			font-weight: bold;
-			margin-bottom: 10px;
-		}
-
-		h1 {
-			font-size: 28px;
-			color: #007bff;
-		}
-
-		h2 {
-			font-size: 24px;
-			color: #444;
-		}
-
-		p {
-			margin-bottom: 10px;
-		}
-
-		ul {
+		html,body{
+			font-family: sans-serif;
 			margin: 0;
-			padding: 0;
-			list-style: none;
+			width: 1000px;
+			height: 1415px;
+			padding: 0px;
 		}
-
-		ul li {
-			margin-bottom: 5px;
+		p {
+			margin: 0;
 		}
-
-		section {
-			margin-bottom: 20px;
-		}
-
-		.section-title {
-			background-color: #007bff;
-			color: #fff;
+		.strong {
 			font-weight: bold;
-			padding: 5px 10px;
-			margin-bottom: 10px;
-			display: inline-block;
 		}
-
-		.skill-list {
-			margin-top: 5px;
-			margin-left: 20px;
-			font-weight: normal;
-			color: #666;
+		.p-standard {
+			padding: 5px 0;
 		}
-
-		.clearfix {
-			clear: both;
+		.cv-content {
+			display: table;
+			height: 100%;
 		}
-
-		@media print {
-			body {
-				font-size: 12px;
-			}
+		.left-content,
+		.right-content {
+			display: table-cell;
+		}
+		.left-content {
+    		background: #303d48;
+			color: white;
+			width: 350px;
+			max-width: 350px;
+		}
+		.right-content {
+			width: 700px;
+		}
+		.header {
+			width: 300px;
+			padding-top: 40px;
+			height: 200px;
+		}
+		.header-inner {
+			position: relative;
+		}
+		.header-inner img {
+			position: absolute;
+			margin: auto;
+			left: 0;
+			right: 0;
+			border-radius: 50%;
+		}
+		.block {
+			padding: 0 50px;
+			padding-top: 50px;
+		}
+		.block-header {
+			margin-bottom: 35px;
+			font-size: 32px;
+			border-bottom: 1px solid;
+		}
+		.block i {
+			padding-right: 10px;
 		}
 	</style>
 </head>
 <body>
-	<header>
-		<h1>Imię Nazwisko</h1>
-		<p>Adres: ul. Przykładowa 123, 00-000 Miasto</p>
-		<p>Telefon: 123-456-789</p>
-		<p>Email: example@example.com</p>
-		<p>LinkedIn: <a href="#">linkedin.com/in/example</a></p>
-	</header>
-
-	<section>
-		<h2 class="section-title">Doświadczenie zawodowe</h2>
-
-		<div class="experience">
-			<h3>Nazwa stanowiska, Firma</h3>
-			<p class="date">MM/RR - Obecnie</p>
-			<ul>
-				<li>Opis zadania 1</li>
-				<li>Opis zadania 2</li>
-				<li>Opis zadania 3</li>
-			</ul>
-		</div>
-
-		<div class="experience">
-			<h3>Nazwa stanowiska, Firma</h3>
-			<p class="date">MM/RR - MM/RR</p>
-			<ul>
-				<li>Opis zadania 1</li>
-				<li>Opis zadania 2</li>
-				<li>Opis zadania 3</li>
-			</ul>
-		</div>
-	</section>
-
-	<section>
-		<h2 class="section-title">Wykształcenie</h2>
-
-		<div class="education">
-			<h3>Tytuł naukowy, Kierunek studiów</h3>
-			<p>Uniwersytet, Wydział, Miejscowość</p>
-			<p class="date">RR -
+	<div class="cv-content">
+		<div class="left-content">
+			<div class="header">
+				<div class="header-inner">
+					<img src="{{data.photo}}" alt="profile.png" width="200" height="200">
+				</div>
+			</div>
+			<div class="block">
+				<div class="block-inner">
+					<div class="block-header">
+						<span>
+							Kontant
+						</span>
+					</div>
+					<div class="p-standard">
+						<i class="fas fa-phone"></i>
+						<span>
+							{{data.phone}}
+						</span>
+					</div>
+					<div class="p-standard">
+						<i class="fas fa-envelope"></i>
+						<span>
+							{{data.email}}
+						</span>
+					</div>
+					<div class="p-standard">
+						<i class="fas fa-calendar"></i>
+						<span>
+							{{data.birthdate}}
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="block">
+				<div class="block-inner">
+					<div class="block-header">
+						<span>
+							Edukacja
+						</span>
+					</div>
+					{% for education in data.education %}
+						<div class="p-standard">
+							<p class="strong p-standard">
+								{{education.name}}
+							</p>
+							<p class="p-standard">
+								{{education.start ~ ' - ' ~ education.end}}
+							</p>
+							<p class="p-standard">
+								{{education.school}}
+							</p>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="block">
+				<div class="block-inner">
+					<div class="block-header">
+						<span>
+							Języki
+						</span>
+					</div>
+					{% for languageSkill in data.languageSkills %}
+						<div class="p-standard">
+							<p class="strong p-standard">
+								{{languageSkill.name}}
+							</p>
+							<div class="p-standard">
+								<span>
+									{{languageSkill.lvl}}
+								</span>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="block">
+				<div class="block-inner">
+					<div class="block-header">
+						<span>
+							Zainsteresowania
+						</span>
+					</div>
+					{% for interest in data.interests %}
+						<li class="p-standard">
+							{{interest.name}}
+						</li>
+					{% endfor %}
+				</div>
+			</div>
+		</div> 
+		<div class="right-content">
+			<div class="header">
+			asddsaasd
+			</div>
+		</div> 
+	</div>
+</body>
