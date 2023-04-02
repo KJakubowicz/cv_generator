@@ -53,7 +53,7 @@ class Generator extends MainGenerator
             throw new Exception("Invalid parameters", 1);
         }
 
-        $cvObject = $this->_setter->setData($params);
+        $cvObject = $this->_setter->createData($params);
         $pdf = $this->_pdfCreator->createPdf($cvObject, 'cv');
 
         return [

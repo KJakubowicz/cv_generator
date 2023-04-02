@@ -26,12 +26,12 @@ class CvObjectSetter
     }
 
     /**
-     * setData
+     * createData
      *
      * @param  mixed $params
-     * @return GeneratorObject
+     * @return array
      */
-    public function setData(array $params): GeneratorObject
+    public function createData(array $params): array
     {
         foreach ($params as $key => $value) {
             $method = 'set'.ucfirst(strtolower($key));
@@ -41,6 +41,6 @@ class CvObjectSetter
             $this->_object->$method($value);    
         }
 
-        return $this->_object;
+        return $this->_object->getData();
     }
 }

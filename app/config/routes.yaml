@@ -11,3 +11,6 @@ app.cv_generator:
     path: /api/v1/generate/{provider}
     controller: App\Controller\GeneratorController::generate
     methods: POST
+app.cv_generator_test:
+    path: /test
+    controller: App\Controller\GeneratorController::test
