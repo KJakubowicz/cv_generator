@@ -8,6 +8,8 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "dompdf/dompdf": "^2.0",
+        "knplabs/knp-snappy": "^1.4",
+        "knplabs/knp-snappy-bundle": "^1.9",
         "mpdf/mpdf": "v8.1.2",
         "nelmio/api-doc-bundle": "^4.11",
         "symfony/apache-pack": "^1.0",
