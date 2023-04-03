@@ -2,7 +2,6 @@
 
 namespace App\Services\Creators;
 
-use Dompdf\Dompdf;
 use Twig\Environment;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Path;
@@ -40,7 +39,7 @@ class PdfCreator
     public function createPdf(array $params, string $fileName): string
     {
         $pdfGenerator = new Pdf($_ENV['WKHTMLTOPDF_PATH']);
-        
+
         $pdfHtml = $this->_twig->render(
             'pdf/' . $fileName . '.html.twig',
             [
@@ -59,16 +58,6 @@ class PdfCreator
         ]);
 
         $pdfContent = $pdfGenerator->getOutputFromHtml($pdfHtml);
-        
-        // var_dump($pdfContent);die;
-        // $domPdf = new Dompdf();
-        // $options = $domPdf->getOptions(); 
-        // $options->set(array('isRemoteEnabled' => true));
-        // $domPdf->setOptions($options);
-        // $domPdf->setPaper('A4', 'portrait');
-        // $domPdf->loadHtml($pdfHtml);
-        // $domPdf->render();
-        // $output = $domPdf->output();
         $filesystem = new Filesystem();
 
         try {

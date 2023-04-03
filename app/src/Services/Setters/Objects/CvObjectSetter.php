@@ -40,7 +40,6 @@ class CvObjectSetter
             }
             $this->_object->$method($value);    
         }
-
         return $this->_object->getData();
     }
 }
