@@ -56,6 +56,13 @@ class GeneratorObject extends MainObjectGenerator
     private $description;
 
     /**
+     * position
+     *
+     * @var string
+     */
+    private $position;
+
+    /**
      * experience
      *
      * @var array
@@ -245,6 +252,27 @@ class GeneratorObject extends MainObjectGenerator
     }
     
     /**
+     * setPosition
+     *
+     * @param  mixed $description
+     * @return void
+     */
+    public function setPosition(string $position): void
+    {
+        $this->position = $position;
+    }
+    
+    /**
+     * getPosition
+     *
+     * @return string
+     */
+    public function getPosition(): string
+    {
+        return $this->position;
+    }
+
+    /**
      * setExperience
      *
      * @param  mixed $experience
@@ -385,6 +413,7 @@ class GeneratorObject extends MainObjectGenerator
             'phone' => $this->getPhone(),
             'birthdate' => $this->getBirthdate(),
             'description' => $this->getDescription(),
+            'position' => $this->getPosition(),
             'experience' => $this->getExperience(),
             'education' => $this->getEducation(),
             'languageSkills' => $this->getLanguageSkills(),

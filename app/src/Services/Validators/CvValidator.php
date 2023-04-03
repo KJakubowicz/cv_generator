@@ -17,6 +17,7 @@ class CvValidator extends MainValidator
         'surname',
         'email',
         'phone',
+        'position',
         'birthdate',
         'description',
         'experience',
@@ -35,6 +36,7 @@ class CvValidator extends MainValidator
      * @return bool
      */
     public function Validate(array $params): bool {
+ 
         foreach ($this->requred as $field) {
             if (!array_key_exists($field, $params)) {
                 $this->setValided(false);
