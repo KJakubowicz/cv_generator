@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>CV - {{data.name ~ ' ' ~ data.surname}}</title>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+	<style>
+		html,body{
+			font-family: sans-serif;
+			margin: 0;
+			width: 1000px;
+			height: 1415px;
+			padding: 0px;
+		}
+		p {
+			margin: 0;
+		}
+		.strong {
+			font-weight: bold;
+		}
+		.fade {
+			color: #333b4b7a;
+		}
+		.p-standard {
+			padding: 5px 0;
+		}
+		.cv-content {
+			display: table;
+			height: 100%;
+		}
+		.left-content,
+		.right-content {
+			display: table-cell;
+		}
+		.left-content {
+    		background: #303d48;
+			color: white;
+			width: 350px;
+			max-width: 350px;
+		}
+		.right-content {
+			width: 700px;
+		}
+		.header {
+			height: 250px;
+		}
+		.header-inner {
+			position: relative;
+			height: 100%;
+		}
+		.header-inner.img {
+			padding-top: 40px;
+		}
+		.header-inner img {;
+			position: absolute;
+			margin: auto;
+			left: 0;
+			right: 0;
+			border-radius: 50%;
+		}
+		.header-inner.div {
+			padding-top: 40px;
+		}
+		.header-inner .about {
+			padding: 50px;
+			background-color: #f5f5f5;
+			position: absolute;
+			margin: auto;
+			left: 1px;
+			right: 0;
+			top: 0;
+    		bottom: 0;
+		}
+		.block {
+			padding: 0 50px;
+			padding-top: 50px;
+		}
+		.block-header {
+			margin-bottom: 35px;
+			font-size: 32px;
+			border-bottom: 1px solid;
+		}
+		.block i {
+			padding-right: 10px;
+		}
+		.right-content {
+			color: #333b4b;
+		}
+		.right-content .name {
+			font-size: 42px;
+		}
+		.right-content .position {
+			font-size: 26px;
+    		color: #42434e;
+		}
+		.right-content .desc {
+			padding-top: 20px;
+		}
+		.experience-header{
+			position: relative;
+			padding-bottom: 15px;
+		}
+		.experience-position {
+			position: absolute;
+    		left: 0;
+		}
+		.experience-time {
+			position: absolute;
+    		right: 0;
+		}
+		.skills {
+			padding-right: 10px;
+		}
+		.skills::before {
+			content:"\A";
+			width:8px;
+			height:8px;
+			border-radius:50%;
+			background: #303d48;
+			display:inline-block;
+		}
+	</style>
+</head>
+<body>
+	<div class="cv-content">
+		<div class="left-content">
+			<div class="header">
+				<div class="header-inner img">
+					<img src="{{data.photo}}" alt="profile.png" width="200" height="200">
+				</div>
+			</div>
+			<div class="block">
+				<div class="block-inner">
+					<div class="block-header">
+						<span>
+							Kontant
+						</span>
+					</div>
+					<div class="p-standard">
+						<i class="fas fa-phone"></i>
+						<span>
+							{{data.phone}}
+						</span>
+					</div>
+					<div class="p-standard">
+						<i class="fas fa-envelope"></i>
+						<span>
+							{{data.email}}
+						</span>
+					</div>
+					<div class="p-standard">
+						<i class="fas fa-calendar"></i>
+						<span>
+							{{data.birthdate}}
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="block">
+				<div class="block-inner">
+					<div class="block-header">
+						<span>
+							Edukacja
+						</span>
+					</div>
+					{% for education in data.education %}
+						<div class="p-standard">
+							<p class="strong p-standard">
+								{{education.name}}
+							</p>
+							<p class="p-standard">
+								{{'(' ~ education.start ~ ') - (' ~ education.end ~ ')'}}
+							</p>
+							<p class="p-standard">
+								{{education.school}}
+							</p>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="block">
+				<div class="block-inner">
+					<div class="block-header">
+						<span>
+							Języki
+						</span>
+					</div>
+					{% for languageSkill in data.languageSkills %}
+						<div class="p-standard">
+							<p class="strong p-standard">
+								{{languageSkill.name}}
+							</p>
+							<div class="p-standard">
+								<span>
+									{{languageSkill.lvl}}
+								</span>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="block">
+				<div class="block-inner">
+					<div class="block-header">
+						<span>
+							Zainsteresowania
+						</span>
+					</div>
+					{% for interest in data.interests %}
+						<li class="p-standard">
+							{{interest.name}}
+						</li>
+					{% endfor %}
+				</div>
+			</div>
+		</div> 
+		<div class="right-content">
+			<div class="header">
+				<div class="header-inner div">
+					<div class="about">
+						<div class="name">
+							{{data.name ~ ' ' ~ data.surname}}
+						</div>
+						<div class="position">
+							{{data.position}}
+						</div>
+						<div class="desc">
+							{{data.description}}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="block">
+				<div class="block-inner">
+					<div class="block-header">
+						<span>
+							Doświadczenie
+						</span>
+					</div>
+					{% for experience in data.experience %}
+						<div class="p-standard">
+							<div class="experience-header">
+								<p class="strong experience-position">
+									{{experience.position}}
+								</p>
+								<p class="experience-time fade">
+									{{'(' ~ experience.start ~ ') - (' ~ experience.end ~ ')'}}
+								</p>
+							</div>
+							<p class="p-standard fade">
+								{{experience.company}}
+							</p>
+							<p class="p-standard">
+								{{experience.desc}}
+							</p>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="block">
+				<div class="block-inner">
+					<div class="block-header">
+						<span>
+							Umiejętności
+						</span>
+					</div>
+					<div class="p-standard">
+						{% for skill in data.skills %}
+							<li class="p-standard">
+								{{skill.name}}
+							</li>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+			<div class="block">
+				<div class="block-inner">
+					<div class="block-header">
+						<span>
+							Linki
+						</span>
+					</div>
+					{% for link in data.links %}
+						<div class="p-standard">
+							{% if link.type == 'git' %}
+								<i class="fab fa-git-alt"></i>
+							{% elseif link.type == 'linkedin' %}
+								<i class="fab fa-linkedin"></i>
+							{% else %}
+								<i class="fas fa-link"></i>
+							{% endif %}
+							<span>
+								{{link.href}}
+							</span>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div> 
+	</div>
+</body>

@@ -2,40 +2,42 @@
 
 namespace App\Tests;
 
-use App\Services\Setters\Objects\CvObjectSetter;
+use App\Services\Creators\PdfCreator;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Filesystem\Path;
 
-class CvObjectSetterTest extends KernelTestCase
+class PdfCreatorTest extends KernelTestCase
 {
     /**
-     * testSetter
+     * testPdfCreator
      *
      * @return void
      */
-    public function testSetter()
+    public function testPdfCreator()
     {
         self::bootKernel();
         $container = static::getContainer();
-        $setterService = $container->get(CvObjectSetter::class);
-        $params = $this->getSetterData();
-
+        $pdfCreatorService = $container->get(PdfCreator::class);
+        $params = $this->getCvData();
+    
         if (empty($params)) {
             $this->fail('No test file');
         }
         
-        $result = $setterService->createData($params);
+        $result = $pdfCreatorService->createPdf($params, 'test');
+        $fileDir = Path::normalize(self::$kernel->getProjectDir() . '/files/pdf/test.pdf');
 
-        $this->assertEquals($params, $result);
+        $this->assertEquals($fileDir, $result);
     }
     
     /**
-     * getSetterData
+     * getCvData
      *
      * @return array
      */
-    private function getSetterData(): array
+    private function getCvData(): array
     {
         $filesystem = new Filesystem();
         $jsonEncoder = new JsonEncoder();
