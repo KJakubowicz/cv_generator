@@ -1,0 +1,117 @@
+{
+    "photo": "https://cdn.pixabay.com/photo/2023/03/25/17/35/girl-7876505_960_720.jpg",
+    "name": "Kamil",
+    "surname": "Jakubowicz",
+    "email": "mail@o2.pl",
+    "phone": "734874569",
+    "birthdate": "12-12-2140",
+    "description": "Jestem osobą, która kocha programowanie w PHP i jest wytrwała w swoich wysiłkach. Cechuje mnie pasja do tworzenia aplikacji webowych i stałe doskonalenie swoich umiejętności programistycznych. Mam zdolność do szybkiego uczenia się i dostosowywania się do nowych technologii oraz umiejętność pracy w zespole. Zawsze stawiam na jakość kodu i starannie przemyślane rozwiązania.",
+    "position": "PHP Developer",
+    "experience": [
+        {
+            "position": "Super PHP",
+            "start": "2-12-2003",
+            "end": "2-12-2005",
+            "company": "Corpo Agendo",
+            "desc": "Stanowisko PHP developera wymaga zaawansowanej znajomości PHP oraz umiejętności tworzenia i utrzymywania aplikacji webowych. Oczekuje się znajomości frameworków, baz danych, HTML, CSS i JavaScript."
+        },
+        {
+            "position": "Super JS",
+            "start": "2-12-2005",
+            "end": "2-12-2007",
+            "company": "Salescook",
+            "desc": "Stanowisko PHP developera wymaga zaawansowanej znajomości PHP oraz umiejętności tworzenia i utrzymywania aplikacji webowych. Oczekuje się znajomości frameworków, baz danych, HTML, CSS i JavaScript."
+        },
+        {
+            "position": "Super Webdev",
+            "start": "2-12-2007",
+            "end": "2-12-20010",
+            "company": "INFO",
+            "desc": "Stanowisko PHP developera wymaga zaawansowanej znajomości PHP oraz umiejętności tworzenia i utrzymywania aplikacji webowych. Oczekuje się znajomości frameworków, baz danych, HTML, CSS i JavaScript."
+        }
+    ],
+    "education": [
+        {
+            "name": "Technikum",
+            "start": "2-12-2003",
+            "end": "2-12-2005",
+            "school": "Nazwa technikum"
+        },
+        {
+            "name": "Studia",
+            "start": "2-10-2006",
+            "end": "2-12-2007",
+            "school": "Nazwa uczelni"
+        }
+    ],
+    "languageSkills": [
+        {
+            "name": "Angielski",
+            "lvl": "b1"
+        },
+        {
+            "name": "Rosyjski",
+            "lvl": "b2"
+        },
+        {
+            "name": "Francuski",
+            "lvl": "b2"
+        }
+    ],
+    "skills": [
+        {
+            "name": "Znajomość języka PHP w stopniu zaawansowanym"
+        },
+        {
+            "name": "Umiejętność pracy z bazami danych, w tym SQL"
+        },
+        {
+            "name": "Znajomość popularnych frameworków PHP, takich jak Laravel, Symfony czy CodeIgniter"
+        },
+        {
+            "name": "Zrozumienie architektury aplikacji webowych, w tym wzorców projektowych MVC i RESTful API"
+        },
+        {
+            "name": "Umiejętność pracy z systemami kontroli wersji, takimi jak Git"
+        },
+        {
+            "name": "Znajomość HTML, CSS i JavaScript w stopniu wystarczającym do pracy z PHP w kontekście tworzenia stron internetowych"
+        },
+        {
+            "name": "Znajomość zagadnień bezpieczeństwa w kontekście programowania webowego, takich jak ataki XSS i CSRF"
+        }
+    ],
+    "interests": [
+        {
+            "name": "chodzenie"
+        },
+        {
+            "name": "bieganie"
+        },
+        {
+            "name": "siedzenie"
+        },
+
+        {
+            "name": "patrzenie"
+        }
+    ],
+    "links": [
+        {
+            "type": "git",
+            "href": "https://github.com/nelmio/NelmioApiDocBundle/issues/1759"
+        },
+        {
+            "type": "linkedin",
+            "href": "https://www.linkedin.com/"
+        },
+        {
+            "type": "website",
+            "href": "https://www.olx.pl/"
+        },
+        {
+            "type": "website",
+            "href": "https://www.facebook.pl/"
+        }
+    ]
+}
