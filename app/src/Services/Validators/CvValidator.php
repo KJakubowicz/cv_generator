@@ -35,8 +35,8 @@ class CvValidator extends MainValidator
      * @param  mixed $params
      * @return bool
      */
-    public function Validate(array $params): bool {
- 
+    public function Validate(array $params): bool 
+    {
         foreach ($this->requred as $field) {
             if (!array_key_exists($field, $params)) {
                 $this->setValided(false);
