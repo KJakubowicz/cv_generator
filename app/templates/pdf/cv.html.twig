@@ -165,14 +165,22 @@
 					</div>
 					{% for education in data.education %}
 						<div class="p-standard">
+							<p class="p-standard">
+								{{'(' ~ education.start ~ ') - (' ~ education.end ~ ')'}}
+							</p>
 							<p class="strong p-standard">
 								{{education.name}}
 							</p>
 							<p class="p-standard">
-								{{'(' ~ education.start ~ ') - (' ~ education.end ~ ')'}}
+								Kierunek: {{education.major}}
 							</p>
+							{% if education.specialization is defined %}
+								<p class="p-standard">
+									Specjalizacja: {{education.specialization}}
+								</p>
+							{% endif %}
 							<p class="p-standard">
-								{{education.school}}
+								Poziom wykształcenia: {{education.pzm}}
 							</p>
 						</div>
 					{% endfor %}
@@ -244,11 +252,14 @@
 									{{experience.position}}
 								</p>
 								<p class="experience-time fade">
+									{% if experience.end is empty %}
+										{% set experience = experience|merge({'end': 'obecnie'}) %}
+									{% endif %}
 									{{'(' ~ experience.start ~ ') - (' ~ experience.end ~ ')'}}
 								</p>
 							</div>
 							<p class="p-standard fade">
-								{{experience.company}}
+								{{'' ~ experience.company ~ '  (' ~ experience.city ~ ')'}}
 							</p>
 							<p class="p-standard">
 								{{experience.desc}}
