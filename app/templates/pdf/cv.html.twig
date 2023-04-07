@@ -56,7 +56,8 @@
 			margin: auto;
 			left: 0;
 			right: 0;
-			border-radius: 50%;
+			border-radius: 5%;
+			height: 215px;
 		}
 		.header-inner.div {
 			padding-top: 40px;
@@ -126,7 +127,7 @@
 		<div class="left-content">
 			<div class="header">
 				<div class="header-inner img">
-					<img src="{{data.photo}}" alt="profile.png" width="200" height="200">
+					<img src="{{data.photo}}" alt="profile.png">
 				</div>
 			</div>
 			<div class="block">
@@ -165,14 +166,22 @@
 					</div>
 					{% for education in data.education %}
 						<div class="p-standard">
+							<p class="p-standard">
+								{{'(' ~ education.start ~ ') - (' ~ education.end ~ ')'}}
+							</p>
 							<p class="strong p-standard">
 								{{education.name}}
 							</p>
 							<p class="p-standard">
-								{{'(' ~ education.start ~ ') - (' ~ education.end ~ ')'}}
+								Kierunek: {{education.major}}
 							</p>
+							{% if education.specialization is defined %}
+								<p class="p-standard">
+									Specjalizacja: {{education.specialization}}
+								</p>
+							{% endif %}
 							<p class="p-standard">
-								{{education.school}}
+								Poziom wykształcenia: {{education.pzm}}
 							</p>
 						</div>
 					{% endfor %}
@@ -244,11 +253,14 @@
 									{{experience.position}}
 								</p>
 								<p class="experience-time fade">
+									{% if experience.end is empty %}
+										{% set experience = experience|merge({'end': 'obecnie'}) %}
+									{% endif %}
 									{{'(' ~ experience.start ~ ') - (' ~ experience.end ~ ')'}}
 								</p>
 							</div>
 							<p class="p-standard fade">
-								{{experience.company}}
+								{{'' ~ experience.company ~ '  (' ~ experience.city ~ ')'}}
 							</p>
 							<p class="p-standard">
 								{{experience.desc}}
